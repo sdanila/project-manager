@@ -7,17 +7,11 @@ export interface IHttpMethodRequestSettings<SR, CR, D> {
   type: typeof QueryTypes[keyof typeof QueryTypes]
   data?: D
   options?: AxiosRequestConfig<D>
-  // eslint-disable-next-line no-unused-vars
-  converterSuccess?: (data: SR) => CR
-  // eslint-disable-next-line no-unused-vars
-  converterFailed?: (data: unknown) => unknown
 }
 
 interface IHttpResponse<CR> {
   success: boolean
   data: CR
-  errorMessage: string
-  codeStatus: string
 }
 
 export class BaseHttpService {
@@ -30,16 +24,11 @@ export class BaseHttpService {
     this.baseUrl = baseUrl
   }
 
-  protected sendQuery = async <ServerResponse, ConverteredResponse, Data extends AxiosRequestConfig<any>>({
-    url,
-    data,
-    type,
-    options,
-    converterSuccess,
-  }:
-    IHttpMethodRequestSettings<any, ConverteredResponse, Data>): Promise<
-      IHttpResponse<ServerResponse>
-    > => {
+  private _sendQuery = async <ServerResponse, ConverteredResponse, Data extends AxiosRequestConfig<any>>({
+    url, data, type, options,
+  }: IHttpMethodRequestSettings<any, ConverteredResponse, Data>): Promise<
+    IHttpResponse<ServerResponse>
+  > => {
     let response
     switch (type) {
       case QueryTypes.POST:
@@ -59,15 +48,20 @@ export class BaseHttpService {
         break
     }
 
-    const { data: responseData, status } = response
-    const success = status >= 200 && status <= 300
+    const { data: responseData, status } = response;
+    const success = status >= 200 && status <= 300;
+
     const resultResponse = {
       success,
-      data: success && converterSuccess ? converterSuccess(responseData as ServerResponse) : responseData,
-      errorMessage: responseData.message,
-      codeStatus: responseData.code || status,
-      responseStatus: status,
+      data: responseData,
     }
+
     return resultResponse
+  }
+  protected get sendQuery() {
+    return this._sendQuery
+  }
+  protected set sendQuery(value) {
+    this._sendQuery = value
   }
 }

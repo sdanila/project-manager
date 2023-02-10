@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 
-// import { makeCommunicationReducer } from 'shared/utils/communication/reducer/makeCommunicationReducer'
+import { makeCommunicationReducer } from 'shared/utils/communication/reducer/makeCommunicationReducer'
 import { IWorkPlaneState } from '../types'
 
 import * as actions from '../actions'
 
 export default combineReducers<IWorkPlaneState['communications']>({
-  // getImages: makeCommunicationReducer(actions.getImages),
+  getAllList: makeCommunicationReducer(actions.getAllList),
   // resetCards: makeCommunicationReducer(actions.resetHiddenCards),
 })

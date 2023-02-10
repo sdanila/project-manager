@@ -24,9 +24,7 @@ export function configureStore(extra: IExtra): ConfigureStore {
   const middleware = thunk.withExtraArgument<IExtra>(extra)
 
   const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION__ && process.env.NODE_ENV !== 'production'
-      ? window.__REDUX_DEVTOOLS_EXTENSION__
-      : compose
+    window.__REDUX_DEVTOOLS_EXTENSION__ || compose()
 
   const reducer: Reducer<IApplicationState, AnyAction> = combineReducers({
     workPlane: WorkPlaneFeature.reducer
@@ -34,8 +32,9 @@ export function configureStore(extra: IExtra): ConfigureStore {
 
   const store = createStore(
     reducer,
-    composeEnhancers(
+    compose(
       applyMiddleware(middleware),
+      // composeEnhancers
     )
   )
 

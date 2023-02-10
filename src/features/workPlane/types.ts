@@ -1,13 +1,12 @@
-// import { ICommunication } from 'shared/models/Communication/Communication'
-// import { IConvertedBonusHistory } from 'services/api/BonusHistoryApi/types/types'
+import { ICommunication } from 'shared/models/Communication/Communication'
+import { IServerWorkPlaneItem } from 'shared/models/WorkPlane'
 
 export interface IWorkPlaneState {
   communications: {
-    // getBonusHistory: ICommunication
-    // getCashbackHistory: ICommunication
+    getAllList: ICommunication
   }
   data: {
-    // bonusHistory: IConvertedBonusHistory
+    list: IServerWorkPlaneItem[]
     // cashbackHistory: IConvertedBonusHistory
   }
 }
