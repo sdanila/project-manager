@@ -1,0 +1,74 @@
+@import 'shared/style/var.scss';
+
+.main-menu {
+  background: #27272A;
+  height: calc(100vh - $header-height);
+  border: 0.0625rem solid #414144;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+
+  @media (min-width: 1000px) {
+    min-width: 15%;
+    max-width: 15%;
+    width: 15%;
+  }
+
+  &__items {
+    width: 100%;
+    overflow: hidden;
+    border-top: 0.0625rem solid #414144;
+  }
+
+  &__item {
+    display: flex;
+    width: 100%;
+    padding: 0.4rem;
+    padding-left: 1.42rem;
+    align-items: center;
+    white-space: nowrap;
+    color: #fff;
+    user-select: none;
+    cursor: pointer;
+
+    &:hover,
+    &_active {
+      background: #A1A1AA;
+      color: #fff;
+    }
+  }
+
+  &__item-top {
+    margin-left: 1.04rem;
+    font-size: 0.875rem;
+    line-height: 1.0256rem;
+  }
+
+  &__toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.8125rem 0 1.25rem;
+    height: 2.75rem;
+    cursor: pointer;
+  }
+
+  &__title {
+
+    &-first,
+    &-second {
+      color: #A1A1AA;
+      user-select: none;
+    }
+
+    &-first {
+      font-size: 0.875rem;
+      line-height: 1rem;
+    }
+
+    &-second {
+      font-size: 0.625rem;
+      line-height: 0.75rem;
+    }
+  }
+}

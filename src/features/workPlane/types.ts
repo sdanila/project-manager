@@ -7,6 +7,5 @@ export interface IWorkPlaneState {
   }
   data: {
     list: IServerWorkPlaneItem[]
-    // cashbackHistory: IConvertedBonusHistory
   }
 }

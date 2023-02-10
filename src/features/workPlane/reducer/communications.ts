@@ -7,5 +7,4 @@ import * as actions from '../actions'
 
 export default combineReducers<IWorkPlaneState['communications']>({
   getAllList: makeCommunicationReducer(actions.getAllList),
-  // resetCards: makeCommunicationReducer(actions.resetHiddenCards),
 })
