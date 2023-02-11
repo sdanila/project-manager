@@ -10,10 +10,15 @@ import Header from 'components/Header';
 import MainMenu from 'components/MainMenu';
 
 import './App.scss';
+import ContentTitle from 'components/ContentTitle';
 
 const b = block('app');
 
-function App() {
+interface IAppProps {
+  children: JSX.Element
+}
+
+function App({ children }: IAppProps) {
   const dispatch = useAppDispatch();
   const allList = useSelector(selectWorkPlaneListData, shallowEqual);
 
@@ -27,16 +32,14 @@ function App() {
     <div className={b()}>
       <div className={b('wrapper')}>
         <Header />
-        <MainMenu />
         <div className={b('container')}>
-          <div className={b('header-wrapper')}>
-            {/* <Header /> */}
-          </div>
+          <MainMenu />
           <main className={b('main')}>
-            <div className={b('main-wrapper')}>
+            <div className={b('main-top')}>
+              <ContentTitle />
             </div>
+            <div className={b('main-content')}>{children}</div>
           </main>
-          {/* <Footer /> */}
         </div>
       </div>
     </div>

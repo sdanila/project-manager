@@ -1,0 +1,17 @@
+export const menuItems = [
+  { title: 'По объекту', route: '/lock' },
+  { title: 'Объекты', route: '/lock' },
+  { title: 'РД', route: '/lock' },
+  { title: 'МТО', route: '/lock' },
+  { title: 'СМР', contentTitle: 'Строительно-монтажные работы', route: '/construction-installation', notDisabled: true },
+  { title: 'График', route: '/lock' },
+  { title: 'МиМ', route: '/lock' },
+  { title: 'Рабочие', route: '/lock' },
+  { title: 'Как в положении', route: '/lock' },
+  { title: 'Бюджет', route: '/lock' },
+  { title: 'Финансирование', route: '/lock' },
+  { title: 'Панорамы', route: '/lock' },
+  { title: 'Камеры', route: '/lock' },
+  { title: 'Поручения', route: '/lock' },
+  { title: 'Контрагенты', route: '/lock' },
+]

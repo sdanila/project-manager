@@ -1,46 +1,33 @@
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useSelector, shallowEqual, useDispatch } from 'react-redux';
+import React, { useMemo, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import block from 'bem-cn';
 
 import { ReactComponent as MenuIcon } from 'shared/img/MenuIcon.svg';
 import { ReactComponent as ArrowSVG } from 'shared/img/Arrow.svg';
 
-import './MainMenu.scss';
+import { menuItems } from './index';
 
-const menuItems = [
-  { title: 'По объекту', route: '/lock' },
-  { title: 'Объекты', route: '/lock' },
-  { title: 'РД', route: '/lock' },
-  { title: 'МТО', route: '/lock' },
-  { title: 'СМР', route: '/some-route', notDisabled: true },
-  { title: 'График', route: '/lock' },
-  { title: 'МиМ', route: '/lock' },
-  { title: 'Рабочие', route: '/lock' },
-  { title: 'Как в положении', route: '/lock' },
-  { title: 'Бюджет', route: '/lock' },
-  { title: 'Финансирование', route: '/lock' },
-  { title: 'Панорамы', route: '/lock' },
-  { title: 'Камеры', route: '/lock' },
-  { title: 'Поручения', route: '/lock' },
-  { title: 'Контрагенты', route: '/lock' },
-]
+import './MainMenu.style.scss';
 
 const b = block('main-menu');
 
 export default function MainMenu() {
-  const dispatch = useDispatch();
-  const [isOpenMenu, setIsOpenMenu] = useState<boolean>(true)
+  const location = useLocation();
+  const [isOpenMenu, setIsOpenMenu] = useState<boolean>(true);
 
   const items = useMemo(
     () =>
       menuItems
         .map((t) =>
-          <div key={`${t.title}-${t.route}`} className={b('item')}>
+          <div
+            key={`${t.title}-${t.route}`}
+            className={b('item', { active: t.route === location.pathname })}
+          >
             <MenuIcon className={b('item-icon')} />
             <span className={b('item-top')}>{t.title}</span>
           </div>),
-    [],
+    [location.pathname],
   );
 
   return (
